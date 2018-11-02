@@ -1,0 +1,36 @@
+---
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+<p align="center">
+*Curriculum Vitae*
+</p>
+
+
+<p align="center">
+<font size="+2">**Data Scientist**</font>
+</p>
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Experience
+
++ **Summer 2018**, Internship at Facebook, Big Data, Spark,  Scala
+
+
++ **Feb-May 2018**, Data Analysis on Tunisia Census Data
+
+## Education 
+
+
