@@ -1,0 +1,19 @@
+file C:/Users/user/Desktop/ESSAI 3/Statistique bayesienne/Stat_bay/Modele.txt does not exist
+model must be checked before data is loaded
+model must be checked before compiling
+model must have been compiled but not updated to be able to change RN generator
+BugsCmds:NoCompileInits
+BugsCmds:NoCompileInits
+BugsCmds:NoCompileInits
+model must be compiled before generating initial values
+model must be initialized before updating
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before DIC can be monitored
+model must be initialized before updating
+model must be initialized before monitors used
+DIC monitor not set
