@@ -13,7 +13,7 @@ navbar:
     href: rayen.html
   - text: Project
     menu:
-      - text: Map_rayen
+      - text: Tunisia Map
         href: tunisie.html
       - text: Scoring
         href: projet.html
@@ -21,7 +21,7 @@ navbar:
         
   right:
   - icon: fa-envelope fa-lg
-    href: contact.html
+    href: 
   - icon: fa-github fa-lg
     href: http://github.com/khayatrayen
   - icon: fa-linkedin fa-lg

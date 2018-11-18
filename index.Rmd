@@ -7,7 +7,30 @@
 
 <img src="images/pcv.jpg" style="width:25%; border:1px solid; margin-right: 20px" align="left">
 
-Khayat Mohamed Rayen élève ingénieur en 5 année en statistique et analyse de l'information à l'Ecole Supérieure de la Statistique et de l'Analyse de l'Information ESSAI. 
+Khayat Mohamed Rayen élève ingénieur à   [*Ecole Supérieure de la Statistique et de l'Analyse de l'Information*](http://www.essai.rnu.tn/accueil.htm)  en statistique et analyse de l'information .
 
-Ce site est réalisé dans le but de présenter mes projets  réalisés durant mon cursus universitaire à l'ESSAI 
-et de partager mon CV et mon expérience 
+
+
+Je suis interessé par la science des données,Machine learning,Data MiningModelisation statistique et la Data Visualization.   j'utilise souvent  `R`,`SAS`,`Python` pour l'analyse des données  . 
+
+Je vais partager sur ce site des codes `R` et `Python` pour  Machine Learning, modélisation statistique et Data Visualization .
+
+Vos feedback et questions sont les bienvenus .
+
+Je vais partager avec vous aussi mon CV et certains de mes projets réalisés lors de mon cursus universitaire 
+
+ 
+
+N'hesitez pas à me  [ contacter](mailto:khayatrayen95@gmail.com) .
+
+
+
+<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fkhayatrayen.github.io&width=163&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=874215545998179" width="163" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+
+
+
+
+
+
+
