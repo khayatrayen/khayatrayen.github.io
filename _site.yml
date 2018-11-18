@@ -10,7 +10,7 @@ navbar:
   - text: My CV
     href: rayan_CV.html
   - text: statistique bayesienne
-    href: stat_bay/rayen.html
+    href: rayen.html
   - text: Project
     menu:
       - text: Map_rayen
