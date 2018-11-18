@@ -1,10 +1,13 @@
 ---
 ---
 
+
+
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-<img src="images/31362688.jpeg" style="width:25%; border:1px solid; margin-right: 20px" align="left">
+<img src="images/pcv.jpg" style="width:25%; border:1px solid; margin-right: 20px" align="left">
 
-I'm Mohamed Rayan Khayat. I'm a good Data Scientist and no one is better than me. 
+Khayat Mohamed Rayen élève ingénieur en 5 année en statistique et analyse de l'information à l'Ecole Supérieure de la Statistique et de l'Analyse de l'Information ESSAI. 
 
-If you want to contact..
+Ce site est réalisé dans le but de présenter mes projets  réalisés durant mon cursus universitaire à l'ESSAI 
+et de partager mon CV et mon expérience 

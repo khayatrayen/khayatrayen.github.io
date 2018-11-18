@@ -3,7 +3,9 @@ output:
   html_document: 
     toc: true
     toc_float: true
+    
 ---
+<img src="images/pcv.jpg" style="width:25%; border:1px solid; margin-right: 20px" align="left">
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
@@ -13,8 +15,29 @@ output:
 
 
 <p align="center">
-<font size="+2">**Data Scientist**</font>
+<font size="+2">**Data Scientist Student**</font>
 </p>
+
+----
+
+<p align="justify">
+**Statut:** Etudiant à <a href='http://www.essai.rnu.tn/accueil.htm'> L'école supérieure de la statistique et de l'analyse de l'information ESSAI</a>
+
+**Compétences:** R,SAS,SQL,Python,Machine Learning, Data Mining, Statistics,Java
+
+**Interêts:** Statistics,Data science, Big Data, Data Analytics
+</p>
+
+
+
+----
+
+<p align="justify">
+**Summary** 
+Double compétences statistiques et informatique permettant une approche opérationnelle, stratégique et décisionnelle.
+</p>
+
+----
 
 
 
@@ -26,11 +49,87 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Experience
 
-+ **Summer 2018**, Internship at Facebook, Big Data, Spark,  Scala
+ **06/2018 – 07/2018 Orange Tunisie** , CVM & Data Analyst Intern
+
+  * Traitement et nettoyage des données .
+  * Calcul des KPIs marketing .
+  * Analyse statistiques .
+  * Segmentation clientèle : RFM segmentation .
+  * Environnement technique : SAS Guide Entreprise.
 
 
-+ **Feb-May 2018**, Data Analysis on Tunisia Census Data
+ **05/2017 – 06/2017 EVEY Technologies** , Data Analyst Intern
+ 
+  * Construction de la base de données des utilisateurs .
+  * Nettoyage de la base de données .
+  * Classification non supérvisée des utilisateurs .
+  * Préparation d'un dashboard .
+  
+## Projet Universitaire : 
+  **Novembre 2018 **  
+  
+  * Visualisation des délégations ayant un nombre de logements supérieur à 11000
+  distant de moins de 1 KM en Tunisie . 
+  
+  * Mots techniques : R, Data visualisation, Map, Flexdashboard .
+  
+  **Octobre 2018 **  Réalisation d'une application de jeux de devinette avec Java .
+  
+   * Mots techniques : Java, SWING, JDBC .
+   
+   **Mai 2018 ** Projet de fin d'année : Correction des variations saisonnière dans une série
+   temporelle et prévision .
+   
+   * Mots techniques : JDemetra, Série temporelle, prévision . 
+  
+  **Avril 2018 ** Scoring : Modélisation du risque crédit avec des méthodes de machine Learning 
+  et choix du modèle performant.
+  
+   * Mots Techniques : R, R shiny, Machine Learning, Modélisation.
+  
+   **Avril 2018 ** Simulation : Méthode Monte Carlo .
+   
+   * Simulation de la loi uniforme .
+   * Méthode d’inversion .
+   * Méthode de rejet .
+   * Simulation des lois normales .
+   * Mots techniques : Simulation, R
+  
+  **Décembre 2018 **  Sondage : Enquête sur les dépenses des
+tunisiens sur PlanetWin365 pendant 30 jours .
+
+  
+  * Préparation du questionnaire et Collecte des données .
+  
+  * Application des méthodes de sondage avec R .
+  
+  * Synthèse .
+  
+  **Avril  2017 ** Projet d'analyse en composantes principale ACP .
+  
+  * Réalisation d'un dashboard contenant les différents étape d'analyse .
+  
+  * Mots technique : R, ACP .
+
 
 ## Education 
 
+ **2016-2019** Ecole Supérieure de la statistique et de l'analyse de l'information .
+ Diplôme d'ingénieur en statistique et analyse de l'information .
+ 
+ **2014-2016** Univérsité de Tunis ElManar 
+ Cycle Préparatoire aux études d'ingénieurs Mathématiques-Physiues .
+ 
+ **2011-2014** Lycée L'aouina 
+ 
+ 
+## Certificat et Vie associative 
 
+**2016** Certificat R course Datacamp .
+Membre actif 
+        
+    
+
+**2017** Certficat Python course Datacamp .
+       
+       
