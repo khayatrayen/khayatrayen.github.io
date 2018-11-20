@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Clustering</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Mohamed Rayen Khayat</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="rayan_CV.html">My CV</a>
+</li>
+<li>
+  <a href="rayen.html">statistique bayesienne</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Data Mining
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="clustering.html">Clustering tutorial</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tunisie.html">Tunisia Map</a>
+    </li>
+    <li>
+      <a href="projet.html">Scoring</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="http://github.com/khayatrayen">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/rayen-khayat-21067212b/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.facebook.com/rayen.khayat">
+    <span class="fa fa-facebook fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Clustering</h1>
+
+</div>
+
+
+<p>In this script we will look at Kmeans and hierarchical clustering using the weather data.</p>
+<pre><code>## Rattle: A free graphical interface for data science with R.
+## Version 5.2.0 Copyright (c) 2006-2018 Togaware Pty Ltd.
+## Entrez &#39;rattle()&#39; pour secouer, faire vibrer, et faire défiler vos données.</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: Formula</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Hmisc&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     format.pval, units</code></pre>
+<div id="weather-data" class="section level2">
+<h2>Weather Data</h2>
+<pre class="r"><code>data(weather)
+#
+head(weather,2)                          # Look at the data</code></pre>
+<pre><code>##         Date Location MinTemp MaxTemp Rainfall Evaporation Sunshine
+## 1 2007-11-01 Canberra       8    24.3      0.0         3.4      6.3
+## 2 2007-11-02 Canberra      14    26.9      3.6         4.4      9.7
+##   WindGustDir WindGustSpeed WindDir9am WindDir3pm WindSpeed9am
+## 1          NW            30         SW         NW            6
+## 2         ENE            39          E          W            4
+##   WindSpeed3pm Humidity9am Humidity3pm Pressure9am Pressure3pm Cloud9am
+## 1           20          68          29      1019.7      1015.0        7
+## 2           17          80          36      1012.4      1008.4        5
+##   Cloud3pm Temp9am Temp3pm RainToday RISK_MM RainTomorrow
+## 1        7    14.4    23.6        No     3.6          Yes
+## 2        3    17.5    25.7       Yes     3.6          Yes</code></pre>
+</div>
+<div id="kmeans-with-plot-and-statistics" class="section level2">
+<h2>KMEANS with plot and statistics</h2>
+<p>For this exercise, we remove the date, location, Risk, Rain Today and Rain Tomorrow columns.</p>
+<p>Note that the K means algorithm requires numeric variables</p>
+<pre class="r"><code>weather &lt;- weather[,-c(1,2,22,23,24)]           # Drop the first two columns
+numvars &lt;- lapply(weather,is.numeric)                 # Find numeric variables in data set
+numdata &lt;- na.omit(weather[,numvars==TRUE])
+head(numdata,2)</code></pre>
+<pre><code>##   MinTemp MaxTemp Rainfall Evaporation Sunshine WindGustSpeed WindSpeed9am
+## 1       8    24.3      0.0         3.4      6.3            30            6
+## 2      14    26.9      3.6         4.4      9.7            39            4
+##   WindSpeed3pm Humidity9am Humidity3pm Pressure9am Pressure3pm Cloud9am
+## 1           20          68          29      1019.7      1015.0        7
+## 2           17          80          36      1012.4      1008.4        5
+##   Cloud3pm Temp9am Temp3pm
+## 1        7    14.4    23.6
+## 2        3    17.5    25.7</code></pre>
+<pre class="r"><code>#
+km &lt;- kmeans(x=numdata, centers=3)             #  Compute kmeans with 3 clusters</code></pre>
+<p>Generate a scatter plots of the variables colored by clusters</p>
+<pre class="r"><code>palette(c(&quot;blue&quot;,&quot;red&quot;, &quot;green&quot;,&quot;orange&quot;))    # Set custom colors
+cPlot &lt;- function(vars=sample(1:15,5)){
+  plot(numdata[vars], col=km$cluster, pch=16)
+  }
+cPlot(1:5)</code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>cPlot()</code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>cPlot()</code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<p>Note that in the plot: “left” variable is on the y axis and the “under” variable is on the x axis</p>
+<p>Next, we determine number of clusters by looking for a “knee” in the curve, i.e. the largest drop in the within sum of squares in the plot below</p>
+<pre class="r"><code>numdataS &lt;- scale(numdata)          # Scale the data: (x - m)/sd
+ssPlot &lt;- function(data,maxCluster=15){
+                SSw  &lt;- (nrow(data)-1)*sum(apply(data,2,var))   # Initialize within sum of squares 
+                SSw &lt;- vector()
+                  for (i in 2:maxCluster){
+                         SSw[i] &lt;- sum(kmeans(data,centers=i)$withinss)
+                  }
+                plot(1:maxCluster, SSw, type=&quot;b&quot;, 
+                             xlab=&quot;Number of Clusters&quot;,
+                     ylab=&quot;Within groups sum of squares&quot;) 
+              }
+ssPlot(numdataS)</code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The plotcluster function in the fpc package. There are parameters to distinguish classes by ten available projection methods, including classical discriminant coordinates, methods to project differences in mean and covariance structure, asymmetric methods (separation of a homogeneous class from a heterogeneous one), local neighborhood-based methods and methods based on robust covariance matrices. One-dimensional data is plotted against the cluster number.</p>
+<pre class="r"><code>kmPlot &lt;- function(data,nclust=3,...)
+        {
+            km &lt;- kmeans(x=data, centers=nclust)     
+            plotcluster(x=data,clvecd=km$cluster,...)            # plot fcn from fpc package
+            title(main=paste(nclust, &quot; clusters&quot;))
+            cluster.stats(dist(data),km$cluster)                 # Compute cluster stats with fcn from fpc package
+            return(km)
+        }
+par(mfrow=c(2,2))
+kmod &lt;- kmPlot(numdataS)
+kmod8 &lt;- kmPlot(numdataS,nclust=4)
+kmod2 &lt;- kmPlot(numdataS,nclust=2,clnum=2,method=&quot;awc&quot;)
+kmod2b &lt;- kmPlot(numdataS,nclust=2,clnum=1,method=&quot;bc&quot;)     </code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="hierarchical-clustering" class="section level2">
+<h2>Hierarchical Clustering</h2>
+<p>The following function to produce a hierarchical correlation plot. It follows code on page 135 of Data Mining with Rattle and R.</p>
+<p>Note that in the plot shorter lengths correspond to higher correlations</p>
+<pre class="r"><code>numvars &lt;- lapply(weather,is.numeric)       # Find numeric variables in data set
+weather.num &lt;- na.omit(weather[,numvars==TRUE])
+hcPlot &lt;- function(data=&quot;numdata&quot;){
+  df &lt;- eval(parse(text=data))
+  cc &lt;- cor(df,use=&quot;pairwise&quot;,method=&quot;pearson&quot;)
+  hc &lt;- hclust(dist(cc),method=&quot;average&quot;)
+  dn &lt;- as.dendrogram(hc)
+  op &lt;- par(mar = c(3, 4, 3, 4.29))
+  plot(dn, horiz = TRUE, nodePar = list(col = 3:2, cex = c(2.0, 0.75), 
+                                        pch = 21:22, bg=  c(&quot;light blue&quot;, &quot;pink&quot;), lab.cex = 0.75, 
+                                        lab.col = &quot;tomato&quot;), edgePar = list(col = &quot;gray&quot;, lwd = 2), xlab=&quot;Height&quot;)
+  title(main=paste(&quot;Variable Correlation Clusters&quot;,data,&quot;using Pearson&quot;,sep=&quot; &quot;),
+        sub=paste(format(Sys.time(), &quot;%Y-%b-%d %H:%M:%S&quot;), Sys.info()[&quot;user&quot;]))
+  par(op)
+  return(hc)
+}
+hcPlot(data=&quot;weather.num&quot;)           # Note: name of file must be in quotes!!</code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre><code>## 
+## Call:
+## hclust(d = dist(cc), method = &quot;average&quot;)
+## 
+## Cluster method   : average 
+## Distance         : euclidean 
+## Number of objects: 16</code></pre>
+<p>varclus, in the Hmisc package, does a hierarchical cluster analysis on variables, using the Hoeffding D statistic, squared Pearson or Spearman (the default) correlations, or proportion of observations for which two variables are both positive as similarity measures. The clustering is done by hclust().</p>
+<pre class="r"><code>vClus &lt;- varclus(as.matrix(numdata),similarity = &quot;hoeffding&quot;)
+vClus</code></pre>
+<pre><code>## varclus(x = as.matrix(numdata), similarity = &quot;hoeffding&quot;)
+## 
+## 
+## Similarity matrix (30 * Hoeffding D)
+## 
+##               MinTemp MaxTemp Rainfall Evaporation Sunshine WindGustSpeed
+## MinTemp          1.00    0.22     0.00        0.16     0.01          0.01
+## MaxTemp          0.22    1.00     0.00        0.20     0.07          0.01
+## Rainfall         0.00    0.00     1.00        0.00     0.01          0.00
+## Evaporation      0.16    0.20     0.00        1.00     0.06          0.03
+## Sunshine         0.01    0.07     0.01        0.06     1.00          0.00
+## WindGustSpeed    0.01    0.01     0.00        0.03     0.00          1.00
+## WindSpeed9am     0.01    0.01     0.01        0.00     0.00          0.06
+## WindSpeed3pm     0.00    0.02     0.00        0.00     0.00          0.18
+## Humidity9am      0.02    0.03     0.01        0.10     0.09          0.04
+## Humidity3pm      0.00    0.10     0.02        0.07     0.23          0.00
+## Pressure9am      0.07    0.03     0.02        0.05     0.00          0.09
+## Pressure3pm      0.07    0.05     0.01        0.05     0.00          0.08
+## Cloud9am         0.01    0.01     0.01        0.00     0.18          0.00
+## Cloud3pm         0.00    0.00     0.00        0.00     0.14          0.00
+## Temp9am          0.48    0.38     0.00        0.21     0.03          0.02
+## Temp3pm          0.20    0.82     0.00        0.18     0.08          0.01
+##               WindSpeed9am WindSpeed3pm Humidity9am Humidity3pm
+## MinTemp               0.01         0.00        0.02        0.00
+## MaxTemp               0.01         0.02        0.03        0.10
+## Rainfall              0.01         0.00        0.01        0.02
+## Evaporation           0.00         0.00        0.10        0.07
+## Sunshine              0.00         0.00        0.09        0.23
+## WindGustSpeed         0.06         0.18        0.04        0.00
+## WindSpeed9am          1.00         0.05        0.02        0.01
+## WindSpeed3pm          0.05         1.00        0.01        0.00
+## Humidity9am           0.02         0.01        1.00        0.07
+## Humidity3pm           0.01         0.00        0.07        1.00
+## Pressure9am           0.02         0.03        0.01        0.00
+## Pressure3pm           0.01         0.03        0.01        0.00
+## Cloud9am              0.01         0.00        0.04        0.10
+## Cloud3pm              0.00         0.00        0.02        0.08
+## Temp9am               0.01         0.00        0.05        0.03
+## Temp3pm               0.01         0.02        0.03        0.11
+##               Pressure9am Pressure3pm Cloud9am Cloud3pm Temp9am Temp3pm
+## MinTemp              0.07        0.07     0.01     0.00    0.48    0.20
+## MaxTemp              0.03        0.05     0.01     0.00    0.38    0.82
+## Rainfall             0.02        0.01     0.01     0.00    0.00    0.00
+## Evaporation          0.05        0.05     0.00     0.00    0.21    0.18
+## Sunshine             0.00        0.00     0.18     0.14    0.03    0.08
+## WindGustSpeed        0.09        0.08     0.00     0.00    0.02    0.01
+## WindSpeed9am         0.02        0.01     0.01     0.00    0.01    0.01
+## WindSpeed3pm         0.03        0.03     0.00     0.00    0.00    0.02
+## Humidity9am          0.01        0.01     0.04     0.02    0.05    0.03
+## Humidity3pm          0.00        0.00     0.10     0.08    0.03    0.11
+## Pressure9am          1.00        0.64     0.01     0.01    0.06    0.03
+## Pressure3pm          0.64        1.00     0.00     0.01    0.08    0.04
+## Cloud9am             0.01        0.00     1.00     0.09    0.00    0.01
+## Cloud3pm             0.01        0.01     0.09     1.00    0.00    0.00
+## Temp9am              0.06        0.08     0.00     0.00    1.00    0.34
+## Temp3pm              0.03        0.04     0.01     0.00    0.34    1.00
+## 
+## No. of observations used for each pair:
+## 
+##               MinTemp MaxTemp Rainfall Evaporation Sunshine WindGustSpeed
+## MinTemp           354     354      354         354      354           354
+## MaxTemp           354     354      354         354      354           354
+## Rainfall          354     354      354         354      354           354
+## Evaporation       354     354      354         354      354           354
+## Sunshine          354     354      354         354      354           354
+## WindGustSpeed     354     354      354         354      354           354
+## WindSpeed9am      354     354      354         354      354           354
+## WindSpeed3pm      354     354      354         354      354           354
+## Humidity9am       354     354      354         354      354           354
+## Humidity3pm       354     354      354         354      354           354
+## Pressure9am       354     354      354         354      354           354
+## Pressure3pm       354     354      354         354      354           354
+## Cloud9am          354     354      354         354      354           354
+## Cloud3pm          354     354      354         354      354           354
+## Temp9am           354     354      354         354      354           354
+## Temp3pm           354     354      354         354      354           354
+##               WindSpeed9am WindSpeed3pm Humidity9am Humidity3pm
+## MinTemp                354          354         354         354
+## MaxTemp                354          354         354         354
+## Rainfall               354          354         354         354
+## Evaporation            354          354         354         354
+## Sunshine               354          354         354         354
+## WindGustSpeed          354          354         354         354
+## WindSpeed9am           354          354         354         354
+## WindSpeed3pm           354          354         354         354
+## Humidity9am            354          354         354         354
+## Humidity3pm            354          354         354         354
+## Pressure9am            354          354         354         354
+## Pressure3pm            354          354         354         354
+## Cloud9am               354          354         354         354
+## Cloud3pm               354          354         354         354
+## Temp9am                354          354         354         354
+## Temp3pm                354          354         354         354
+##               Pressure9am Pressure3pm Cloud9am Cloud3pm Temp9am Temp3pm
+## MinTemp               354         354      354      354     354     354
+## MaxTemp               354         354      354      354     354     354
+## Rainfall              354         354      354      354     354     354
+## Evaporation           354         354      354      354     354     354
+## Sunshine              354         354      354      354     354     354
+## WindGustSpeed         354         354      354      354     354     354
+## WindSpeed9am          354         354      354      354     354     354
+## WindSpeed3pm          354         354      354      354     354     354
+## Humidity9am           354         354      354      354     354     354
+## Humidity3pm           354         354      354      354     354     354
+## Pressure9am           354         354      354      354     354     354
+## Pressure3pm           354         354      354      354     354     354
+## Cloud9am              354         354      354      354     354     354
+## Cloud3pm              354         354      354      354     354     354
+## Temp9am               354         354      354      354     354     354
+## Temp3pm               354         354      354      354     354     354
+## 
+## hclust results (method=complete)
+## 
+## 
+## Call:
+## hclust(d = as.dist(1 - x), method = method)
+## 
+## Cluster method   : complete 
+## Number of objects: 16</code></pre>
+<pre class="r"><code>plot(vClus)</code></pre>
+<p><img src="clustering_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

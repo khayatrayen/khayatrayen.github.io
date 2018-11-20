@@ -11,6 +11,11 @@ navbar:
     href: rayan_CV.html
   - text: statistique bayesienne
     href: rayen.html
+  - text: Data Mining
+    menu:
+      - text: Clustering tutorial
+        href: clustering.html
+      
   - text: Project
     menu:
       - text: Tunisia Map
@@ -20,8 +25,7 @@ navbar:
 
         
   right:
-  - icon: fa-envelope fa-lg
-    href: 
+ 
   - icon: fa-github fa-lg
     href: http://github.com/khayatrayen
   - icon: fa-linkedin fa-lg
