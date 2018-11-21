@@ -2,7 +2,7 @@ name: Khayat Rayen
 output_dir: '.'
 navbar:
   title: Khayat Rayen
-  type:  inverse
+  type: inverse
   left:
   - text: Home
     icon: fa-home
