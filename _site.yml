@@ -7,7 +7,7 @@ navbar:
   - text: Home
     icon: fa-home
     href: index.html
-  - text: My CV
+  - text: CV
     href: rayan_CV.html
   - text: statistique bayesienne
     menu:
@@ -38,7 +38,7 @@ navbar:
     href: https://www.facebook.com/rayen.khayat
 output:
   html_document:
-    theme: cosmo
+    theme: united
     highlight: textmate
     css: styles.css
     lib_dir: site_libs
