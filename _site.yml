@@ -28,7 +28,12 @@ navbar:
     menu:
       - text: Tunisia Map
         href: tunisie.html
-  
+      - text: Shiny App
+        href: shinyapp.html
+        
+        
+  - text: Autres projets
+    href: autresprojets.html
 
 
 

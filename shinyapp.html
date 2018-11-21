@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Shiny application</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -165,6 +168,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
@@ -266,28 +364,18 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Shiny application</h1>
 
 </div>
 
 
-<p><link rel="stylesheet" href="styles.css" type="text/css"></p>
-<p><img src="images/pcv.jpg" style="width:25%; border:1px solid; margin-right: 20px" align="left"></p>
-<p>Khayat Rayen élève ingénieur à <a href="http://www.essai.rnu.tn/accueil.htm"><em>Ecole Supérieure de la Statistique et de l’Analyse de l’Information</em></a> en statistique et analyse de l’information .</p>
-<p>Je suis interessé par la science des données,Machine learning,Data Mining, Modelisation statistique et la Data Visualization. j’utilise souvent <code>R</code>,<code>SAS</code>,<code>Python</code> pour l’analyse des données .</p>
-<p>Je vais partager sur ce site des codes <code>R</code> et <code>Python</code> pour Machine Learning, modélisation statistique et Data Visualization .</p>
-<p>Vous trouverez aussi quelques tutoriels intéréssant</p>
-<p>Je vais partager avec vous aussi mon CV et certains de mes projets réalisés lors de mon cursus universitaire</p>
-<p>Je suis passionné par le data marketing pour une meilleure connaissance client et dans ce sens j’ai travaillé</p>
-<p>durant mon stage d’été sur la segmentation RFM des clients Orange Tunisie et j’ai utilisé SAS comme outils</p>
-<p>analytique afin de mieux cibler les clients lors des campagnes marketing . Ceci m’a permis d’améliorer mes</p>
-<p>connaissances en analyse de données et data mining .</p>
-<p>Vos feedback et questions sont les bienvenus .</p>
-<p>N’hesitez pas à me <a href="mailto:khayatrayen95@gmail.com">contacter</a> .</p>
-<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fkhayatrayen.github.io&amp;width=163&amp;layout=button_count&amp;action=like&amp;size=large&amp;show_faces=true&amp;share=true&amp;height=46&amp;appId=874215545998179" width="163" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">
-</iframe>
+<p>Cette application est la suite du projet classification et prédiction de la solvabilité des clients sur la base de données GERMAN CREDIT</p>
+<p>Dans cette application vous trouverez une analyse uni-variée et bi-variée des variables et puis la modélisation Voir <a href='https://rayenkhayat.shinyapps.io/rayen/'> L’application Shiny</a></p>
 
 
 
+</div>
+</div>
 
 </div>
 

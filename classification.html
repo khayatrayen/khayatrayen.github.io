@@ -327,7 +327,13 @@ div.tocify {
     <li>
       <a href="tunisie.html">Tunisia Map</a>
     </li>
+    <li>
+      <a href="shinyapp.html">Shiny App</a>
+    </li>
   </ul>
+</li>
+<li>
+  <a href="autresprojets.html">Autres projets</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -480,39 +486,39 @@ summary(LogisticModel)</code></pre>
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.6493  -0.7707   0.4291   0.7388   1.9376  
+## -2.5101  -0.7715   0.4194   0.7335   2.0386  
 ## 
 ## Coefficients:
 ##               Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -4.995e+00  1.283e+00  -3.893 9.91e-05 ***
-## V01          5.967e-01  8.205e-02   7.272 3.53e-13 ***
-## V02         -3.020e-02  1.028e-02  -2.938  0.00330 ** 
-## V03          4.047e-01  9.960e-02   4.064 4.83e-05 ***
-## V04          5.642e-02  3.498e-02   1.613  0.10678    
-## V05         -6.609e-05  4.871e-05  -1.357  0.17481    
-## V06          3.089e-01  7.002e-02   4.411 1.03e-05 ***
-## V07          1.094e-01  8.306e-02   1.317  0.18787    
-## V08         -2.841e-01  9.854e-02  -2.883  0.00394 ** 
-## V09          2.423e-01  1.350e-01   1.795  0.07273 .  
-## V10          3.525e-01  2.062e-01   1.710  0.08732 .  
-## V11         -4.983e-02  9.051e-02  -0.551  0.58198    
-## V12         -1.370e-01  1.074e-01  -1.276  0.20202    
-## V13          1.522e-02  9.920e-03   1.534  0.12505    
-## V14          3.725e-01  1.296e-01   2.874  0.00406 ** 
-## V15          3.265e-01  2.005e-01   1.628  0.10348    
-## V16         -3.030e-01  1.836e-01  -1.650  0.09895 .  
-## V17          7.757e-02  1.603e-01   0.484  0.62844    
-## V18         -1.976e-01  2.681e-01  -0.737  0.46103    
-## V19          3.403e-01  2.202e-01   1.545  0.12225    
-## V20          1.280e+00  8.002e-01   1.600  0.10969    
+## (Intercept) -3.565e+00  1.182e+00  -3.017 0.002554 ** 
+## V01          6.278e-01  8.283e-02   7.579 3.49e-14 ***
+## V02         -2.221e-02  1.005e-02  -2.211 0.027050 *  
+## V03          3.752e-01  1.001e-01   3.749 0.000178 ***
+## V04          7.079e-03  3.451e-02   0.205 0.837479    
+## V05         -8.839e-05  4.576e-05  -1.932 0.053377 .  
+## V06          2.247e-01  6.694e-02   3.357 0.000787 ***
+## V07          1.130e-01  8.366e-02   1.351 0.176736    
+## V08         -3.610e-01  9.687e-02  -3.727 0.000194 ***
+## V09          2.687e-01  1.363e-01   1.971 0.048669 *  
+## V10          2.092e-01  2.027e-01   1.032 0.302113    
+## V11         -1.212e-02  8.936e-02  -0.136 0.892082    
+## V12         -3.238e-01  1.057e-01  -3.064 0.002184 ** 
+## V13          6.936e-03  9.530e-03   0.728 0.466716    
+## V14          2.637e-01  1.285e-01   2.052 0.040177 *  
+## V15          3.588e-01  1.924e-01   1.865 0.062203 .  
+## V16         -3.818e-01  1.939e-01  -1.969 0.048950 *  
+## V17          6.098e-02  1.569e-01   0.389 0.697526    
+## V18         -6.322e-02  2.722e-01  -0.232 0.816354    
+## V19          3.882e-01  2.167e-01   1.792 0.073200 .  
+## V20          1.157e+00  6.845e-01   1.690 0.091028 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 907.66  on 749  degrees of freedom
-## Residual deviance: 706.04  on 729  degrees of freedom
-## AIC: 748.04
+##     Null deviance: 912.88  on 749  degrees of freedom
+## Residual deviance: 706.69  on 729  degrees of freedom
+## AIC: 748.69
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <pre class="r"><code>fitLog &lt;- predict(LogisticModel,type=&quot;response&quot;,data2_test)
@@ -562,7 +568,7 @@ lines(x=c(1, 0), y=c(0, 1), col=&quot;green&quot;, lwd=1, lty=4)</code></pre>
 <p><img src="classification_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>AUCnn=performance(prednn, measure = &quot;auc&quot;)@y.values[[1]]
 cat(&quot;AUC: &quot;,AUCnn,&quot;\n&quot;)</code></pre>
-<pre><code>## AUC:  0.7116912</code></pre>
+<pre><code>## AUC:  0.7132347</code></pre>
 </div>
 <div id="choix-du-modele" class="section level2">
 <h2>Choix du modèle</h2>
@@ -587,14 +593,14 @@ model_performance &lt;- as.data.frame(cbind(models, models_AUC))
 colnames(model_performance) &lt;- c(&quot;Model&quot;, &quot;AUC&quot;)
 model_performance</code></pre>
 <pre><code>##                 Model               AUC
-## 1 Logistic regression 0.789044117647058
-## 2       Random Forest 0.808529411764706
-## 3   Arbre de decision 0.714558823529412
-## 4   Réseau de neurone 0.711691176470588</code></pre>
+## 1 Logistic regression 0.780572029126943
+## 2       Random Forest 0.773965918474589
+## 3   Arbre de decision 0.670257488176563
+## 4   Réseau de neurone 0.713234742136476</code></pre>
 </div>
 <div id="interpretation" class="section level2">
 <h2>Interprétation</h2>
-<p>Le modèle le plus adéquat est le modèle “Random Forest” qui correspont à l’“AUC” la plus élevée et la courbe de ROC au dessus des autres ROCs.</p>
+<p>Le modèle le plus adéquat est le modèle Régression logistique qui correspont à l’“AUC” la plus élevée et la courbe de ROC au dessus des autres ROCs.</p>
 </div>
 
 

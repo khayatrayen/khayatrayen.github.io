@@ -1,0 +1,50 @@
+---
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Projet Sondage : 
+
+Un sondage est une méthode consistant à recueillir des informations sur
+un groupe 'individus ou d'unités statistiques (Echantillon) prélevé dans un
+ensemble plus important (Population), et destinée à estimer certaines caractéristiques
+de la distribution d'un ou de plusieurs caractères dans cette
+population dans un but soit descriptif, soit décisionnel. Un ensemble de théories
+appelée "Théorie de sondage" est formé autour de ce concept statistique.
+Cette dernière nous renseigne sur les fondements mathématiques et méthodologiques
+des enquêtes par sondage afin de fournir une base de données fiables
+et pertinentes sur tout ce qui concerne la taille, la composition et les caract
+éristiques de la population cible. C'est dans cette optique que nous avons
+réalisé une enquête sur les dépenses en pari sur planetwin365. Notre variable
+d'intérêt (VI) est les dépenses des tunisiens sur planetwin365 pendant les 3
+derniers mois. L'objectif visé par cette enquête d'estimer la VI par application
+des diférentes méthodes de sondage vues en classe afin d'aboutir a une
+comparaison entre ces diférentes méthodes. Dans ce rapport on commence
+en première partie par une étude descriptive (Défnitions et statistiques descriptives
+relatives aux variables). En seconde partie on procède aux résultats
+des opérations d'échantillonnage et d'estimation (Ponctuelle et par intervalle
+de confance). Le rapport s'achève par une conclusion générale sur l'enquête
+ainsi que les études efectuées.
+Voir <a href='https://www.academia.edu/37821610/Sondage_Enqu%C3%AAte_sur_les_d%C3%A9penses_des_tunisiens_sur_PlanetWin365_pendant_30_jours'> Le rapport du projet</a>
+
+
+
+## Projet Monte Carlo 
+
+En assurance, on utilise le système définie ci-dessous appelé le modèle de Cramer-Lundberg pour modéliser les paiements d'une compagnie d'assurance \[A_{t}=\sum_{k=1}^{N_t}V_k\]
+où les paiements de la compagnie d'assurance arrivent aux instants $T_k$ avec tailles $V_k$ 
+
+
+
+Voir <a href='https://www.academia.edu/37821816/M%C3%A9thode_Monte_Carlo_Mod%C3%A8le_de_Cramer-Lundberg'> Le rapport du projet</a>
