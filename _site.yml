@@ -1,7 +1,7 @@
-name: Mohamed Rayen Khayat
+name: Khayat Rayen
 output_dir: '.'
 navbar:
-  title:  Mohamed Rayen Khayat
+  title:  Khayat Rayen
   type: inverse
   left:
   - text: Home
@@ -9,19 +9,28 @@ navbar:
     href: index.html
   - text: My CV
     href: rayan_CV.html
+    
   - text: statistique bayesienne
-    href: rayen.html
+    menu:
+      - text: MCMC
+        href: MCMC.html
+      - text: R2OpenBugs
+        href: R2OpenBugs.html
+        
   - text: Data Mining
     menu:
       - text: Clustering tutorial
         href: clustering.html
+      - text: Modele de classification
+        href: classification.html
       
-  - text: Project
+  - text: Dashboard
     menu:
       - text: Tunisia Map
         href: tunisie.html
-      - text: Scoring
-        href: projet.html
+  
+
+
 
         
   right:

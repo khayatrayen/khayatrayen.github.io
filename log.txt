@@ -1,0 +1,23 @@
+model is syntactically correct
+data loaded
+model compiled
+initial values loaded but chain contains uninitialized variables
+initial values loaded but chain contains uninitialized variables
+initial values loaded but chain contains uninitialized variables
+initial values generated, model initialized
+model is updating
+3000 updates took 5 s
+model is updating
+4000 updates took 8 s
+CODA files written
+Summary statistics
+		mean	sd	val2.5pc	median	val97.5pc	sample
+	alpha	0.2924	0.4485	-0.5745	0.291	1.185	12000
+	beta1	0.9191	0.001409	0.9083	0.9191	0.9299	12000
+	beta2	-0.03514	2.891E-4	-0.04457	-0.03512	-0.02568	12000
+	deviance	35170.0	3.123	35160.0	35170.0	35170.0	12000
+Deviance information
+	Dbar	Dhat	DIC	pD	
+oppointment	35170.0	35160.0	35170.0	2.01
+total	35170.0	35160.0	35170.0	2.01
+History

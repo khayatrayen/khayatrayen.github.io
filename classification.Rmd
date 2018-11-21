@@ -1,0 +1,178 @@
+---
+title: "Modèle de classification : Machine learning"
+
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+    
+---
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction :
+
+Le projet consiste à modéliser et predire la probabilité de solvabilité des clients d'une banque 
+de la base de données GERMAN CREDIT en appliquant des algorithmes de classification supérvisé et de comparer les 
+performances des modèles .
+
+## Chargement des packages : 
+
+```{r cars}
+library(readxl)
+
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(corrplot)
+library (Deducer)
+
+library(ROCR)
+library(pROC)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+```
+
+
+
+```{r pressure, echo=T}
+data2 <- read_excel("bbb.xls")
+data2[which(data2$V21==2),21]=0
+attach(data2)
+```
+
+## Train and Test data : 
+
+```{r , echo=T}
+
+
+tr=sample(1000,750)
+data2_train=data2[tr,]
+data2_test=data2[-tr,]
+```
+
+##Modèle logistique
+
+```{r , echo=T}
+
+LogisticModel <- glm( V21~.,family = binomial(link = logit),data = data2_train)
+summary(LogisticModel)
+
+fitLog <- predict(LogisticModel,type="response",data2_test)
+predlogit = prediction( fitLog, data2_test$V21)
+perflogit <- performance(predlogit, "tpr", "fpr")
+#auc
+AUCLog2=performance(predlogit, measure = "auc")@y.values[[1]]
+```
+
+
+## Arbre de Décision
+
+```{r , echo=T}
+ArbreModel<- rpart(V21 ~ .,data = data2_train)
+
+fitArbre <- predict(ArbreModel,newdata=data2_test)
+predarbre = prediction(fitArbre, data2_test$V21)
+perfarbre <- performance(predarbre, "tpr", "fpr")
+
+AUCArbre=performance(predarbre, measure = "auc")@y.values[[1]]
+```
+
+
+## Random Forest :
+
+```{r , echo=T}
+RF <- randomForest(V21~ .,
+                   data = data2_train)
+
+fitForet <- predict(RF,
+                    newdata=data2_test)
+predforet = prediction( fitForet, data2_test$V21)
+perfrandomforest <- performance(predforet, "tpr", "fpr")
+
+AUCRF=performance(predforet, measure = "auc")@y.values[[1]]
+```
+
+## Réseau de neurones
+
+```{r , echo=T}
+
+library(nnet)
+library(NeuralNetTools)
+library(e1071)
+Neural<- nnet(V21~ .,data = data2_train,size=20,maxit=10000,decay=.001, linout=F, trace = F)
+fitNeural <- predict(Neural,
+                     newdata=data2_test)
+prednn = prediction( fitNeural, data2_test$V21)
+perfnn <- performance(prednn, "tpr", "fpr")
+plot(perfnn, lwd=2, colorize=TRUE, main="ROC : Neural Network Performance")
+lines(x=c(0, 1), y=c(0, 1), col="red", lwd=1, lty=3);
+lines(x=c(1, 0), y=c(0, 1), col="green", lwd=1, lty=4)
+AUCnn=performance(prednn, measure = "auc")@y.values[[1]]
+cat("AUC: ",AUCnn,"\n")
+```
+
+
+## Choix du modèle 
+
+```{r , echo=T}
+plot(perflogit, col='blue', lty=1, main='ROCs: Model Performance Comparision') # logistic regression
+plot(perfrandomforest, col='red',add=TRUE,lty=4); 
+plot(perfnn, col='black',add=TRUE,lty=8); # Neural Network
+plot(perfarbre, col='green',add=TRUE,lty=9); # Arbre de décision
+    legend(0.6,0.5,
+           c('logistic reg', 
+              'random forest', "Neural Network", 
+              "Arbre de décision"),
+           col=c('blue','red', 'black','green'),
+           lwd=3);
+lines(c(0,1),c(0,1),col = "gray", lty = 4 ) # random line
+
+```
+
+
+## AUC des modèles
+
+```{r , echo=T}
+
+models <- c('Logistic regression', 'Random Forest', 'Arbre de decision',"Réseau de neurone")
+models_AUC <- c(AUCLog2, AUCRF, AUCArbre,AUCnn)
+model_performance <- as.data.frame(cbind(models, models_AUC))
+colnames(model_performance) <- c("Model", "AUC")
+model_performance
+```
+
+
+##Interprétation
+  Le modèle le plus adéquat est le modèle "Random Forest" qui correspont à l'"AUC" la plus élevée et la courbe de ROC au dessus des autres ROCs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

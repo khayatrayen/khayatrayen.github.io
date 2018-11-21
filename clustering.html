@@ -25,9 +25,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -96,9 +94,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -278,7 +273,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Mohamed Rayen Khayat</a>
+      <a class="navbar-brand" href="index.html">Khayat Rayen</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -292,8 +287,20 @@ div.tocify {
 <li>
   <a href="rayan_CV.html">My CV</a>
 </li>
-<li>
-  <a href="rayen.html">statistique bayesienne</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    statistique bayesienne
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="MCMC.html">MCMC</a>
+    </li>
+    <li>
+      <a href="R2OpenBugs.html">R2OpenBugs</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -305,20 +312,20 @@ div.tocify {
     <li>
       <a href="clustering.html">Clustering tutorial</a>
     </li>
+    <li>
+      <a href="classification.html">Modele de classification</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Project
+    Dashboard
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="tunisie.html">Tunisia Map</a>
-    </li>
-    <li>
-      <a href="projet.html">Scoring</a>
     </li>
   </ul>
 </li>
@@ -357,18 +364,34 @@ div.tocify {
 
 
 <p>In this script we will look at Kmeans and hierarchical clustering using the weather data.</p>
+<pre><code>## Warning: package &#39;rattle&#39; was built under R version 3.4.4</code></pre>
 <pre><code>## Rattle: A free graphical interface for data science with R.
 ## Version 5.2.0 Copyright (c) 2006-2018 Togaware Pty Ltd.
 ## Entrez &#39;rattle()&#39; pour secouer, faire vibrer, et faire défiler vos données.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rattle&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:randomForest&#39;:
+## 
+##     importance</code></pre>
+<pre><code>## Warning: package &#39;Hmisc&#39; was built under R version 3.4.4</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
 <pre><code>## Loading required package: Formula</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;Hmisc&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:e1071&#39;:
+## 
+##     impute</code></pre>
+<pre><code>## The following object is masked from &#39;package:plotly&#39;:
+## 
+##     subplot</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     src, summarize</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     format.pval, units</code></pre>
+<pre><code>## Loading required package: xlsxjars</code></pre>
 <div id="weather-data" class="section level2">
 <h2>Weather Data</h2>
 <pre class="r"><code>data(weather)

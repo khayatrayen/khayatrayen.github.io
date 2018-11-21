@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Linear Regression using bayesian statistics Metropolis-Hastings MCMC in R</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -358,96 +358,134 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Linear Regression using bayesian statistics Metropolis-Hastings MCMC in R</h1>
 
 </div>
 
 
-<p><img src="images/pcv.jpg" style="width:25%; border:1px solid; margin-right: 20px" align="left"></p>
 <p><link rel="stylesheet" href="styles.css" type="text/css"></p>
-<p align="center">
-<em>Curriculum Vitae</em>
-</p>
-<p align="center">
-<font size="+2"><strong>Data Scientist Student</strong></font>
-</p>
-<hr />
-<p align="justify">
-<p><strong>Statut:</strong> Etudiant à <a href='http://www.essai.rnu.tn/accueil.htm'> L’école supérieure de la statistique et de l’analyse de l’information ESSAI</a></p>
-<p><strong>Compétences:</strong> R,SAS,SQL,Python,Machine Learning, Data Mining, Statistics,Java</p>
-<strong>Interêts:</strong> Statistics,Data science, Big Data, Data Analytics
-</p>
-<hr />
-<p align="justify">
-<strong>Summary</strong> Double compétences statistiques et informatique permettant une approche opérationnelle, stratégique et décisionnelle.
-</p>
-<hr />
-<div id="experience" class="section level2">
-<h2>Experience</h2>
-<p><strong>06/2018 – 07/2018 Orange Tunisie</strong> , CVM &amp; Data Analyst Intern</p>
-<ul>
-<li>Traitement et nettoyage des données .</li>
-<li>Calcul des KPIs marketing .</li>
-<li>Analyse statistiques .</li>
-<li>Segmentation clientèle : RFM segmentation .</li>
-<li>Environnement technique : SAS Guide Entreprise.</li>
-</ul>
-<p><strong>05/2017 – 06/2017 EVEY Technologies</strong> , Data Analyst Intern</p>
-<ul>
-<li>Construction de la base de données des utilisateurs .</li>
-<li>Nettoyage de la base de données .</li>
-<li>Classification non supérvisée des utilisateurs .</li>
-<li>Préparation d’un dashboard .</li>
-</ul>
+<div id="creating-test-data" class="section level2">
+<h2>Creating Test Data</h2>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+
+ 
+trueA &lt;- 5
+trueB &lt;- 0
+trueSd &lt;- 10
+sampleSize &lt;- 31
+ 
+# create independent x-values 
+x &lt;- (-(sampleSize-1)/2):((sampleSize-1)/2)
+# create dependent values according to ax + b + N(0,sd)
+y &lt;-  trueA * x + trueB + rnorm(n=sampleSize,mean=0,sd=trueSd)
+ 
+plot(x,y, main=&quot;Test Data&quot;)</code></pre>
+<p><img src="MCMC_files/figure-html/setup-1.png" width="672" /></p>
 </div>
-<div id="projet-universitaire" class="section level2">
-<h2>Projet Universitaire :</h2>
-<p><strong>Novembre 2018 </strong></p>
-<ul>
-<li><p>Visualisation des délégations ayant un nombre de logements supérieur à 11000 distant de moins de 1 KM en Tunisie .</p></li>
-<li><p>Mots techniques : R, Data visualisation, Map, Flexdashboard .</p></li>
-</ul>
-<p><strong>Octobre 2018 </strong> Réalisation d’une application de jeux de devinette avec Java .</p>
-<ul>
-<li>Mots techniques : Java, SWING, JDBC .</li>
-</ul>
-<p><strong>Mai 2018 </strong> Projet de fin d’année : Correction des variations saisonnière dans une série temporelle et prévision .</p>
-<ul>
-<li>Mots techniques : JDemetra, Série temporelle, prévision .</li>
-</ul>
-<p><strong>Avril 2018 </strong> Scoring : Modélisation du risque crédit avec des méthodes de machine Learning et choix du modèle performant.</p>
-<ul>
-<li>Mots Techniques : R, R shiny, Machine Learning, Modélisation.</li>
-</ul>
-<p><strong>Avril 2018 </strong> Simulation : Méthode Monte Carlo .</p>
-<ul>
-<li>Simulation de la loi uniforme .</li>
-<li>Méthode d’inversion .</li>
-<li>Méthode de rejet .</li>
-<li>Simulation des lois normales .</li>
-<li>Mots techniques : Simulation, R</li>
-</ul>
-<p><strong>Décembre 2018 </strong> Sondage : Enquête sur les dépenses des tunisiens sur PlanetWin365 pendant 30 jours .</p>
-<ul>
-<li><p>Préparation du questionnaire et Collecte des données .</p></li>
-<li><p>Application des méthodes de sondage avec R .</p></li>
-<li><p>Synthèse .</p></li>
-</ul>
-<p><strong>Avril 2017 </strong> Projet d’analyse en composantes principale ACP .</p>
-<ul>
-<li><p>Réalisation d’un dashboard contenant les différents étape d’analyse .</p></li>
-<li><p>Mots technique : R, ACP .</p></li>
-</ul>
+<div id="defining-the-statistical-model" class="section level2">
+<h2>Defining the statistical model</h2>
+<p>The next step is to specify the statistical model. We already know that the data was created with a linear relationship y = a*x + b between x and y and a normal error model N(0,sd) with standard deviation sd, so let’s use the same model for the fit and see if we can retrieve our original parameter values.</p>
 </div>
-<div id="education" class="section level2">
-<h2>Education</h2>
-<p><strong>2016-2019</strong> Ecole Supérieure de la statistique et de l’analyse de l’information . Diplôme d’ingénieur en statistique et analyse de l’information .</p>
-<p><strong>2014-2016</strong> Univérsité de Tunis ElManar Cycle Préparatoire aux études d’ingénieurs Mathématiques-Physiues .</p>
-<p><strong>2011-2014</strong> Lycée L’aouina</p>
+<div id="derive-the-likelihood-function-from-the-model" class="section level2">
+<h2>Derive the likelihood function from the model</h2>
+<p>For estimating parameters in a Bayesian analysis, we need to derive the likelihood function for the model that we want to fit. The likelihood is the probability (density) with which we would expect the observed data to occur conditional on the parameters of the model that we look at. So, given that our linear model y = b + a<em>x + N(0,sd) takes the parameters (a, b, sd) as an input, we have to return the probability of obtaining the test data above under this model (this sounds more complicated as it is, as you see in the code, we simply calculate the difference between predictions y = b + a</em>x and the observed y, and then we have to look up the probability densities (using dnorm) for such deviations to occur.</p>
+<pre class="r"><code>likelihood &lt;- function(param){
+    a = param[1]
+    b = param[2]
+    sd = param[3]
+     
+    pred = a*x + b
+    singlelikelihoods = dnorm(y, mean = pred, sd = sd, log = T)
+    sumll = sum(singlelikelihoods)
+    return(sumll)   
+}
+ 
+# Example: plot the likelihood profile of the slope a
+slopevalues &lt;- function(x){return(likelihood(c(x, trueB, trueSd)))}
+slopelikelihoods &lt;- lapply(seq(3, 7, by=.05), slopevalues )
+plot (seq(3, 7, by=.05), slopelikelihoods , type=&quot;l&quot;, xlab = &quot;values of slope parameter a&quot;, ylab = &quot;Log likelihood&quot;)</code></pre>
+<p><img src="MCMC_files/figure-html/cars-1.png" width="672" /></p>
 </div>
-<div id="certificat-et-vie-associative" class="section level2">
-<h2>Certificat et Vie associative</h2>
-<p><strong>2016</strong> Certificat R course Datacamp . Membre actif</p>
-<p><strong>2017</strong> Certficat Python course Datacamp .</p>
+<div id="defining-the-prior" class="section level2">
+<h2>Defining the prior</h2>
+<p>As a second step, as always in Bayesian statistics, we have to specify a prior distribution for each parameter. To make it easy, I used uniform distributions and normal distributions for all three parameters. [Some additional information for the “professionals”, skip this when you don’t understand what I’m talking about: while this choice can be considered pretty “uninformative” for the slope and intercept parameters, it is not really uninformative for the standard deviations. An uninformative prior for the latter would usually be scale with 1/sigma (if you want to understand the reason, see here). This stuff is important when you seriously dive into Bayesian statistics, but I didn’t want to make the code more confusing here.]</p>
+</div>
+<div id="the-posterior" class="section level2">
+<h2>The posterior</h2>
+<p>The product of prior and likelihood is the actual quantity the MCMC will be working on. This function is called the posterior (or to be exact, it’s called the posterior after it’s normalized, which the MCMC will do for us, but let’s not be picky for the moment). Again, here we work with the sum because we work with logarithms.</p>
+<pre class="r"><code>posterior &lt;- function(param){
+   return (likelihood(param) + prior(param))
+
+}</code></pre>
+</div>
+<div id="the-mcmc" class="section level2">
+<h2>The MCMC</h2>
+<p>Now, here comes the actual Metropolis-Hastings algorithm. One of the most frequent applications of this algorithm (as in this example) is sampling from the posterior density in Bayesian statistics. In principle, however, the algorithm may be used to sample from any integrable function. So, the aim of this algorithm is to jump around in parameter space, but in a way that the probability to be at a point is proportional to the function we sample from (this is usually called the target function). In our case this is the posterior defined above.</p>
+<pre class="r"><code>proposalfunction &lt;- function(param){
+    return(rnorm(3,mean = param, sd= c(0.1,0.5,0.3)))
+}
+ 
+run_metropolis_MCMC &lt;- function(startvalue, iterations){
+    chain = array(dim = c(iterations+1,3))
+    chain[1,] = startvalue
+    for (i in 1:iterations){
+        proposal = proposalfunction(chain[i,])
+         
+        probab = exp(posterior(proposal) - posterior(chain[i,]))
+        if (runif(1) &lt; probab){
+            chain[i+1,] = proposal
+        }else{
+            chain[i+1,] = chain[i,]
+        }
+    }
+    return(chain)
+}
+ 
+startvalue = c(4,0,10)
+chain = run_metropolis_MCMC(startvalue, 10000)
+ 
+burnIn = 5000
+acceptance = 1-mean(duplicated(chain[-(1:burnIn),]))</code></pre>
+<p>Again, working with the logarithms of the posterior might be a bit confusing at first, in particular when you look at the line where the acceptance probability is calculated (probab = exp(posterior(proposal) – posterior(chain[i,]))). To understand why we do this, note that p1/p2 = exp[log(p1)-log(p2)].</p>
+<p>Finally, we can plot the results.</p>
+<pre class="r"><code>par(mfrow = c(2,3))
+hist(chain[-(1:burnIn),1],nclass=30, , main=&quot;Posterior of a&quot;, xlab=&quot;True value = red line&quot; )
+abline(v = mean(chain[-(1:burnIn),1]))
+abline(v = trueA, col=&quot;red&quot; )
+hist(chain[-(1:burnIn),2],nclass=30, main=&quot;Posterior of b&quot;, xlab=&quot;True value = red line&quot;)
+abline(v = mean(chain[-(1:burnIn),2]))
+abline(v = trueB, col=&quot;red&quot; )
+hist(chain[-(1:burnIn),3],nclass=30, main=&quot;Posterior of sd&quot;, xlab=&quot;True value = red line&quot;)
+abline(v = mean(chain[-(1:burnIn),3]) )
+abline(v = trueSd, col=&quot;red&quot; )
+plot(chain[-(1:burnIn),1], type = &quot;l&quot;, xlab=&quot;True value = red line&quot; , main = &quot;Chain values of a&quot;, )
+abline(h = trueA, col=&quot;red&quot; )
+plot(chain[-(1:burnIn),2], type = &quot;l&quot;, xlab=&quot;True value = red line&quot; , main = &quot;Chain values of b&quot;, )
+abline(h = trueB, col=&quot;red&quot; )
+plot(chain[-(1:burnIn),3], type = &quot;l&quot;, xlab=&quot;True value = red line&quot; , main = &quot;Chain values of sd&quot;, )
+abline(h = trueSd, col=&quot;red&quot; )</code></pre>
+<p><img src="MCMC_files/figure-html/rayen6-1.png" width="672" /></p>
+<pre class="r"><code># for comparison:
+summary(lm(y~x))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -18.7077  -7.9200   0.7514   8.1101  15.5626 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -1.2452     1.5891  -0.784     0.44    
+## x             4.8739     0.1777  27.432   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 8.848 on 29 degrees of freedom
+## Multiple R-squared:  0.9629, Adjusted R-squared:  0.9616 
+## F-statistic: 752.5 on 1 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>You see that we retrieve more or less the original parameters that were used to create our data, and you also see that we get a certain area around the highest posterior values that also have some support by the data, which is the Bayesian equivalent of confidence intervals.</p>
 </div>
 
 

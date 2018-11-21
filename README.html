@@ -91,9 +91,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -177,7 +174,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Mohamed Rayen Khayat</a>
+      <a class="navbar-brand" href="index.html">Khayat Rayen</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -191,8 +188,20 @@ $(document).ready(function () {
 <li>
   <a href="rayan_CV.html">My CV</a>
 </li>
-<li>
-  <a href="rayen.html">statistique bayesienne</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    statistique bayesienne
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="MCMC.html">MCMC</a>
+    </li>
+    <li>
+      <a href="R2OpenBugs.html">R2OpenBugs</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -204,20 +213,20 @@ $(document).ready(function () {
     <li>
       <a href="clustering.html">Clustering tutorial</a>
     </li>
+    <li>
+      <a href="classification.html">Modele de classification</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Project
+    Dashboard
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="tunisie.html">Tunisia Map</a>
-    </li>
-    <li>
-      <a href="projet.html">Scoring</a>
     </li>
   </ul>
 </li>
