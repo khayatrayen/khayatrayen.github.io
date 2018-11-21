@@ -10,7 +10,7 @@ output:
 
 
 
-<link rel="stylesheet" href="styles.css" type="text/css">
+
 
 
 ```{r setup, include=FALSE}
@@ -24,6 +24,7 @@ de la base de données GERMAN CREDIT en appliquant des algorithmes de classifica
 performances des modèles .
 
 ## Chargement des packages : 
+
 
 ```{r cars}
 library(readxl)
@@ -51,6 +52,7 @@ attach(data2)
 
 ## Train and Test data : 
 
+
 ```{r , echo=T}
 
 
@@ -60,6 +62,7 @@ data2_test=data2[-tr,]
 ```
 
 ##Modèle logistique
+
 
 ```{r , echo=T}
 
