@@ -9,37 +9,27 @@ navbar:
     href: index.html
   - text: My CV
     href: rayan_CV.html
-    
   - text: statistique bayesienne
     menu:
       - text: MCMC
         href: MCMC.html
       - text: R2OpenBugs
         href: R2OpenBugs.html
-        
   - text: Data Mining
     menu:
       - text: Clustering tutorial
         href: clustering.html
       - text: Modele de classification
         href: classification.html
-      
   - text: Dashboard
     menu:
       - text: Tunisia Map
         href: tunisie.html
       - text: Shiny App
         href: shinyapp.html
-        
-        
   - text: Autres projets
     href: autresprojets.html
-
-
-
-        
   right:
- 
   - icon: fa-github fa-lg
     href: http://github.com/khayatrayen
   - icon: fa-linkedin fa-lg
