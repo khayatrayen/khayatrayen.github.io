@@ -480,41 +480,41 @@ summary(LogisticModel)</code></pre>
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.5224  -0.7346   0.4158   0.7014   1.9023  
+## -2.6493  -0.7707   0.4291   0.7388   1.9376  
 ## 
 ## Coefficients:
 ##               Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -6.299e+00  1.474e+00  -4.274 1.92e-05 ***
-## V01          6.062e-01  8.290e-02   7.313 2.61e-13 ***
-## V02         -2.238e-02  1.016e-02  -2.204 0.027520 *  
-## V03          4.198e-01  1.023e-01   4.102 4.09e-05 ***
-## V04          5.862e-02  3.554e-02   1.649 0.099060 .  
-## V05         -7.516e-05  4.526e-05  -1.661 0.096749 .  
-## V06          2.541e-01  6.930e-02   3.667 0.000245 ***
-## V07          1.372e-01  8.592e-02   1.597 0.110364    
-## V08         -3.224e-01  9.778e-02  -3.297 0.000976 ***
-## V09          2.369e-01  1.388e-01   1.707 0.087848 .  
-## V10          3.322e-01  2.043e-01   1.626 0.103887    
-## V11         -3.949e-02  9.066e-02  -0.436 0.663115    
-## V12         -1.935e-01  1.085e-01  -1.784 0.074461 .  
-## V13          2.037e-02  1.012e-02   2.013 0.044107 *  
-## V14          3.697e-01  1.333e-01   2.773 0.005561 ** 
-## V15          2.669e-01  2.010e-01   1.328 0.184204    
-## V16         -2.146e-01  1.859e-01  -1.155 0.248234    
-## V17          2.185e-01  1.600e-01   1.366 0.171995    
-## V18         -1.114e-01  2.704e-01  -0.412 0.680254    
-## V19          8.743e-02  2.283e-01   0.383 0.701814    
-## V20          2.376e+00  1.084e+00   2.191 0.028418 *  
+## (Intercept) -4.995e+00  1.283e+00  -3.893 9.91e-05 ***
+## V01          5.967e-01  8.205e-02   7.272 3.53e-13 ***
+## V02         -3.020e-02  1.028e-02  -2.938  0.00330 ** 
+## V03          4.047e-01  9.960e-02   4.064 4.83e-05 ***
+## V04          5.642e-02  3.498e-02   1.613  0.10678    
+## V05         -6.609e-05  4.871e-05  -1.357  0.17481    
+## V06          3.089e-01  7.002e-02   4.411 1.03e-05 ***
+## V07          1.094e-01  8.306e-02   1.317  0.18787    
+## V08         -2.841e-01  9.854e-02  -2.883  0.00394 ** 
+## V09          2.423e-01  1.350e-01   1.795  0.07273 .  
+## V10          3.525e-01  2.062e-01   1.710  0.08732 .  
+## V11         -4.983e-02  9.051e-02  -0.551  0.58198    
+## V12         -1.370e-01  1.074e-01  -1.276  0.20202    
+## V13          1.522e-02  9.920e-03   1.534  0.12505    
+## V14          3.725e-01  1.296e-01   2.874  0.00406 ** 
+## V15          3.265e-01  2.005e-01   1.628  0.10348    
+## V16         -3.030e-01  1.836e-01  -1.650  0.09895 .  
+## V17          7.757e-02  1.603e-01   0.484  0.62844    
+## V18         -1.976e-01  2.681e-01  -0.737  0.46103    
+## V19          3.403e-01  2.202e-01   1.545  0.12225    
+## V20          1.280e+00  8.002e-01   1.600  0.10969    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 905.90  on 749  degrees of freedom
-## Residual deviance: 691.56  on 729  degrees of freedom
-## AIC: 733.56
+##     Null deviance: 907.66  on 749  degrees of freedom
+## Residual deviance: 706.04  on 729  degrees of freedom
+## AIC: 748.04
 ## 
-## Number of Fisher Scoring iterations: 6</code></pre>
+## Number of Fisher Scoring iterations: 5</code></pre>
 <pre class="r"><code>fitLog &lt;- predict(LogisticModel,type=&quot;response&quot;,data2_test)
 predlogit = prediction( fitLog, data2_test$V21)
 perflogit &lt;- performance(predlogit, &quot;tpr&quot;, &quot;fpr&quot;)
@@ -562,7 +562,7 @@ lines(x=c(1, 0), y=c(0, 1), col=&quot;green&quot;, lwd=1, lty=4)</code></pre>
 <p><img src="classification_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>AUCnn=performance(prednn, measure = &quot;auc&quot;)@y.values[[1]]
 cat(&quot;AUC: &quot;,AUCnn,&quot;\n&quot;)</code></pre>
-<pre><code>## AUC:  0.6868288</code></pre>
+<pre><code>## AUC:  0.7116912</code></pre>
 </div>
 <div id="choix-du-modele" class="section level2">
 <h2>Choix du modèle</h2>
@@ -587,10 +587,10 @@ model_performance &lt;- as.data.frame(cbind(models, models_AUC))
 colnames(model_performance) &lt;- c(&quot;Model&quot;, &quot;AUC&quot;)
 model_performance</code></pre>
 <pre><code>##                 Model               AUC
-## 1 Logistic regression 0.756958141573526
-## 2       Random Forest 0.787712762071736
-## 3   Arbre de decision 0.757542552414347
-## 4   Réseau de neurone 0.686828840674994</code></pre>
+## 1 Logistic regression 0.789044117647058
+## 2       Random Forest 0.808529411764706
+## 3   Arbre de decision 0.714558823529412
+## 4   Réseau de neurone 0.711691176470588</code></pre>
 </div>
 <div id="interpretation" class="section level2">
 <h2>Interprétation</h2>
