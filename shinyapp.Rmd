@@ -25,4 +25,4 @@ et puis la modélisation
 
 ##Application :
 
-<iframe src=" https://rayenkhayat.shinyapps.io/rayen/" height="650" width="120%" frameBorder="0"></iframe>
+<iframe src=" https://rayenkhayat.shinyapps.io/rayen/" height="400" width="100%" frameBorder="0"></iframe>
