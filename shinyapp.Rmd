@@ -22,4 +22,7 @@ de données GERMAN CREDIT
 
 Dans cette application vous trouverez une analyse uni-variée et bi-variée des variables 
 et puis la modélisation 
-Voir  <a href='https://rayenkhayat.shinyapps.io/rayen/'> L'application Shiny</a>
+
+##Application :
+
+<iframe src=" https://rayenkhayat.shinyapps.io/rayen/" height="650" width="120%" frameBorder="0"></iframe>
