@@ -7,30 +7,35 @@
 
 <img src="images/pcv.jpg" style="width:25%; border:1px solid; margin-right: 20px" align="left">
 
-Khayat  Rayen élève ingénieur à   [*Ecole Supérieure de la Statistique et de l'Analyse de l'Information*](http://www.essai.rnu.tn/accueil.htm)  en statistique et analyse de l'information .
+Khayat Mohamed Rayen élève ingénieur à   [*Ecole Supérieure de la Statistique et de l'Analyse de l'Information*](http://www.essai.rnu.tn/accueil.htm)  en statistique et analyse de l'information .
 
 
 
-Je suis interessé par la science des données,Machine learning,Data Mining, Modelisation statistique et la Data Visualization.   j'utilise souvent  `R`,`SAS`,`Python` pour l'analyse des données  . 
+Je suis interessé par la science des données,Machine learning, Data Mining, Modelisation statistique et la Data Visualization.   j'utilise souvent  `R`,`SAS`,`Python` pour l'analyse des données  . 
 
 Je vais partager sur ce site des codes `R` et `Python` pour  Machine Learning, modélisation statistique et Data Visualization .
 
-Vous trouverez aussi quelques tutoriels intéréssant 
+Je vais partager des tutoriels intéréssant que j'ai trouvé sur internet . 
 
-Je vais partager avec vous aussi mon CV et certains de mes projets réalisés lors de mon cursus universitaire 
 
-Je suis passionné par le data marketing pour une meilleure connaissance client et dans ce sens j'ai travaillé 
 
-durant mon stage d'été sur la segmentation RFM des clients Orange Tunisie et j'ai utilisé SAS comme outils 
+Je vais partager avec vous aussi mon CV et certains de mes projets réalisés lors de mon cursus universitaire .
+ 
 
-analytique afin de mieux cibler les clients lors des campagnes marketing . Ceci m'a permis d'améliorer mes
 
-connaissances en analyse de données et data mining . 
+Je suis passionné surtout par l'analyse des données marketing pour une meilleure connaissance client ainsi de bien cibler les clients et dans ce contexte, j'ai travailler sur la segmentation clients de l'opérateur Orange Tunisie lors de mon stage d'été et j'ai utilisé SAS comme outils statistique ceci m'a permis d'améliorer mes connaissances
+en SAS et Data mining . 
 
-Ce site est en cours de construction . 
 
 Vos feedback et questions sont les bienvenus .
 
+Ce site est en cours de construction . 
+
+
+
+
+
+ 
 
 N'hesitez pas à me  [ contacter](mailto:khayatrayen95@gmail.com) .
 

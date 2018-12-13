@@ -1,0 +1,23 @@
+---
+title: "R package"
+
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+    
+---
+
+## Description 
+Ce package permet de tester légaliter des moyennes entre deux vecteur et de voir le plot de la densité des 
+deux variables en même temps 
+
+
+##Lien 
+
+Vous pouvez voie le[*StatVector package*](https://github.com/khayatrayen/statVector) sur mon compte Github
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+

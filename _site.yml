@@ -29,6 +29,8 @@ navbar:
         href: shinyapp.html
   - text: Autres projets
     href: autresprojets.html
+  - text: R package
+    href: Rpackage.html
   right:
   - icon: fa-github fa-lg
     href: http://github.com/khayatrayen
